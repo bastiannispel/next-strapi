@@ -9,7 +9,6 @@
   },
   "private": true,
   "dependencies": {
-    "@nrwl/next": "13.8.4",
     "core-js": "^3.6.5",
     "next": "12.1.0",
     "react": "17.0.2",
@@ -26,6 +25,7 @@
     "@nrwl/tao": "13.8.4",
     "@nrwl/web": "13.8.4",
     "@nrwl/workspace": "13.8.4",
+    "@nx-extend/strapi": "^2.0.2",
     "@testing-library/react": "12.1.2",
     "@testing-library/react-hooks": "7.0.2",
     "@types/node": "16.11.7",

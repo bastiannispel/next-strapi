@@ -12,6 +12,7 @@ jobs:
   master:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
+    environment: production
     steps:
       - uses: actions/checkout@v2
         name: Checkout [master]
@@ -25,11 +26,12 @@ jobs:
         with:
           node-version: 14
       - run: yarn install
-      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=build --parallel=2
       - run: npx nx affected --target=test --parallel=2
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
+    environment: development
     steps:
       - uses: actions/checkout@v2
         with:
@@ -43,6 +45,6 @@ jobs:
         with:
           node-version: 14
       - run: yarn install
-      - run: npx nx affected --target=lint --parallel=3
-      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=lint --parallel=2
+      - run: npx nx affected --target=build --parallel=2
       - run: npx nx affected --target=test --parallel=2

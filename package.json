@@ -2,12 +2,23 @@
   "name": "next-strapi",
   "version": "0.0.0",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test"
   },
-  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && nx affected:lint",
+      "pre-push": "nx affected:lint && nx affected:test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,md,ts,html,graphql}": [
+      "yarn format --uncommitted"
+    ]
+  },
   "dependencies": {
     "core-js": "^3.6.5",
     "next": "12.1.0",
@@ -40,6 +51,8 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
     "prettier": "^2.5.1",
     "react-test-renderer": "17.0.2",
     "typescript": "~4.5.2"

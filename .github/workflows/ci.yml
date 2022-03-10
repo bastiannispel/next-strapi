@@ -30,8 +30,8 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --frozen-lockfile
-      - run: nx affected --target=build --parallel=3
-      - run: nx affected --target=test --parallel=3
+      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=test --parallel=3
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
@@ -53,6 +53,6 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --frozen-lockfile
-      - run: nx affected --target=lint --parallel=3
-      - run: nx affected --target=build --parallel=3
-      - run: nx affected --target=test --parallel=3
+      - run: npx nx affected --target=lint --parallel=3
+      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=test --parallel=3

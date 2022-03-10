@@ -18,20 +18,24 @@ jobs:
         name: Checkout [master]
         with:
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      - name: Derive appropriate SHAs
         uses: nrwl/nx-set-shas@v2
         with:
           main-branch-name: 'master'
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: yarn install
-      - run: npx nx affected --target=build --parallel=2
-      - run: npx nx affected --target=test --parallel=2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install --frozen-lockfile
+      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=test --parallel=3
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
-    environment: development
+    environment: staging
     steps:
       - uses: actions/checkout@v2
         with:
@@ -44,7 +48,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: yarn install
-      - run: npx nx affected --target=lint --parallel=2
-      - run: npx nx affected --target=build --parallel=2
-      - run: npx nx affected --target=test --parallel=2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install --frozen-lockfile
+      - run: npx nx affected --target=lint --parallel=3
+      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=test --parallel=3

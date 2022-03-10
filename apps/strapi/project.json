@@ -13,12 +13,6 @@
           "production": true
         }
       }
-    },
-    "deploy": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "commands": [{ "command": "echo 'This wil deploy strapi'" }]
-      }
     }
   },
   "tags": []

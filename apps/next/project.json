@@ -40,12 +40,6 @@
       "options": {
         "lintFilePatterns": ["apps/next/**/*.{ts,tsx,js,jsx}"]
       }
-    },
-    "deploy": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "commands": [{ "command": "echo 'This wil deploy next'" }]
-      }
     }
   },
   "tags": []

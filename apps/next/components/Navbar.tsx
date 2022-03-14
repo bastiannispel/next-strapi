@@ -32,7 +32,7 @@ export default function Navbar() {
           <div className="flex-1 flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center justify-start">
-              <Link href="/">
+              <Link href="/" passHref>
                 <Image
                   className="block h-8 w-auto cursor-pointer hover:scale-95"
                   src="/Logo.png"

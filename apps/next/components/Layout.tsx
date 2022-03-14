@@ -10,9 +10,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Navbar />
-      <div className="">
-        <main className="">{children}</main>
-      </div>
+      <main>{children}</main>
       <Footer />
     </>
   );
